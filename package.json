@@ -24,7 +24,6 @@
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
-    "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
@@ -36,6 +35,7 @@
     "react-redux": "4.0.0",
     "react-router": "^2.0.1",
     "react-websocket": "^1.1.6",
+	"webpack": "^1.12.9",
     "redux": "^3.0.4"
   }
 }

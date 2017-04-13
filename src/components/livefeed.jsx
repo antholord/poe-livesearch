@@ -35,7 +35,7 @@ class LiveFeed extends React.Component {
         return (
             <div>
               Live search: <strong>{this.state.msg}</strong>
-              <Websocket url='ws://localhost:1337/ws/livesearch?league=Legacy&type=Ancient%20Reliquary%20Key'
+              <Websocket url='ws://poe-livesearch-api.herokuapp.com/ws/livesearch?league=Legacy&type=Ancient%20Reliquary%20Key'
                          onMessage={this.handleData.bind(this)}/>
             </div>
         );

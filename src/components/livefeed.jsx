@@ -1,22 +1,18 @@
 import React from 'react';
 import Websocket from 'react-websocket';
-
-class ItemRow extends React.Component{
-  render(){
-    return <tr>
-              <td>
-                this.props.msg
-              </td>
-           </tr>
-  }
+import ItemTable from './itemTable.js';
+class ItemRow extends React.Component {
+    render() {
+        return (
+            <tr>
+                <td><img src={this.props.item.icon}/></td>
+                <td>{this.props.item.name}</td>
+                <td>{this.props.item.typeLine}</td>
+                <td>{this.props.item.note}</td>
+            </tr>
+        );
+    }
 }
-
-/*class ItemTable extends React.Component{
-  render() {
-    let rows = [];
-
-  }
-}*/
 class LiveFeed extends React.Component {
 
   constructor(props) {
@@ -25,24 +21,34 @@ class LiveFeed extends React.Component {
   }
 
     handleData(data) {
-        let result = JSON.parse(data);
-        console.log(result);
-        //console.log(data);
-        //let result = data;
-        //this.setState({rows : this.state.rows.push(result)});
-        this.setState({
-            rows: this.state.rows.concat([result])
-        });
-        this.setState({msg: this.state.msg + "\n" + data});
+      let result;
+      try{
+          result = JSON.parse(data);
+      } catch(e){
+          console.log(e);
+          console.log(data);
+      }
+        if (result){
+            let item = {
+                icon : result.Item.icon,
+                name : result.Item.name,
+                typeLine : result.Item.typeLine,
+                note : result.Item.note
+            };
+            this.setState({
+                rows: this.state.rows.concat([<ItemRow item={item} key={item.id}/>])
+            });
+        }
     }
 
     render() {
         return (
-            //<div>
-              //Live search: <strong>{this.state.msg}</strong>
+            <div>
+                <p>Path of Exile Live search <strong>*STILL IN DEVELOPMENT*</strong></p>
               <Websocket url={'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?league=' + this.state.league + '&type=' + this.state.type}
                          onMessage={this.handleData.bind(this)}/>
-            //</div>
+            <ItemTable rows={this.state.rows} key="1"/>
+            </div>
         );
     }
 

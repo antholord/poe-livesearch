@@ -29,7 +29,10 @@ class LiveFeed extends React.Component {
         console.log(result);
         //console.log(data);
         //let result = data;
-        this.setState({rows : this.state.rows.push(result)});
+        //this.setState({rows : this.state.rows.push(result)});
+        this.setState({
+            rows: this.state.rows.concat([result])
+        });
         this.setState({msg: this.state.msg + "\n" + data});
     }
 

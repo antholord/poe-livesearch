@@ -4,15 +4,11 @@
 import React from 'react';
 import LiveFeed from "./livefeed";
 
-
-
-
-
 class ItemTable extends React.Component {
     render() {
         console.log('rendering table');
         return (
-            <div>
+            <div className="container main">
                 <table>
                     <thead>
                     <tr>
@@ -22,7 +18,7 @@ class ItemTable extends React.Component {
                         <th>Price</th>
                     </tr>
                     </thead>
-                    <tbody>{this.props.rows}</tbody>
+                    {this.props.rows}
                 </table>
 
             </div>

@@ -6,13 +6,14 @@ import { createStore, applyMiddleware } from 'redux';
 import LiveFeed from './components/livefeed.jsx';
 
 import reducers from './reducers';
+import Container from "./components/container";
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
-        <LiveFeed />
+        <Container />
     </Provider>
-    , document.querySelector('.container'));
+    , document.querySelector('.hook'));
 
 

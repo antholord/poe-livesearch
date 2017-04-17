@@ -4,12 +4,17 @@ import ItemTable from './itemTable.js';
 class ItemRow extends React.Component {
     render() {
         return (
-            <tr>
-                <td><img src={this.props.item.icon}/></td>
-                <td>{this.props.item.name}</td>
-                <td>{this.props.item.typeLine}</td>
-                <td>{this.props.item.note}</td>
-            </tr>
+            <tbody>
+                <tr className="result-item">
+                    <td><img src={this.props.item.icon}/></td>
+                    <td>{this.props.item.name}</td>
+                    <td>{this.props.item.typeLine}</td>
+                    <td>{this.props.item.note}</td>
+                </tr>
+                <tr className="result-bottom">
+
+                </tr>
+            </tbody>
         );
     }
 }
@@ -44,7 +49,6 @@ class LiveFeed extends React.Component {
     render() {
         return (
             <div>
-                <p>Path of Exile Live search <strong>*STILL IN DEVELOPMENT*</strong></p>
               <Websocket url={'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?league=' + this.state.league + '&type=' + this.state.type}
                          onMessage={this.handleData.bind(this)}/>
             <ItemTable rows={this.state.rows} key="1"/>

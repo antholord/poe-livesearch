@@ -8,7 +8,7 @@ class ItemTable extends React.Component {
     render() {
         console.log('rendering table');
         return (
-            <div className="container main">
+            <div className="container main top30">
                 <table>
                     <thead>
                     <tr>

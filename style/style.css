@@ -1,77 +1,63 @@
 body {
     color : #DCD3C3;
-    background-color: #18121E; !important
+    background-color: #18121E;
+    font-family: 'Roboto', sans-serif;
+    border-radius:0px;
 }
-
 #main, .main {
+
     background-color: #233237;
+
     border-style:solid;
     border-color:#DCD3C3;
     border-width:1px;
 
-}
-.f30{
-    font-size:30px;
-}
-.f22{
-    font-size:22px;
-}
-.f20{
-    font-size:20px;
-}
-.f16{
-    font-size:16px;
-}
-.f15{
-    font-size:15px;
-}
-.f14{
-    font-size:14px;
-}
-.result-item {
-    min-width:700px;
-    text-align:left;
-    vertical-align:top;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
 }
 
-.top-row{
-    margin-top:10px;
+colored, .colored a {
+    color : #DCD3C3;
 }
-.inline{
-    display:inline;
+.header {
+    margin-bottom:40px;
 }
-.inline-block{
-    display:inline-block;
+.search {
+    margin:10px;
 }
-.bold {
-    font-weight :bold;
-}
-.title, .title a { color : #DCD3C3;}
 
 .top5 { margin-top:5px; }
 .top7 { margin-top:7px; }
 .top10 { margin-top:10px; }
 .top15 { margin-top:15px; }
 .top17 { margin-top:17px; }
+.top20 { margin-top:20px; }
 .top30 { margin-top:30px; }
 .bot5 {margin-bottom:5px;}
 .bot10 {margin-bottom:10px;}
 .bot20 {margin-bottom:20px;}
 .left10{margin-left:10px;}
 .left5{margin-left:5px;}
+.right10{margin-right:10px;}
 
-.container {
-    min-height : 100%;
+#leagueDropdown{
+    margin-top:10px;
+    margin-left:15px;
+    color:black;
+    height:42px;
+    width:200px;
+    font-size: 140%;
+}
+#searchButton{
+    background-color:#DCD3C3;
 }
 .black {
     color:black;
 }
-.header {
-    margin-bottom:75px;
-}
-.black {
-    color:black;
-}
-.searchButton{
-    min-width:100%;
+
+.alert {
+    margin-bottom :0px;
+    margin-right : -15px;
+    margin-left : -15px;
 }

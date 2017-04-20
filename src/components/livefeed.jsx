@@ -1,6 +1,8 @@
 import React from 'react';
 import Websocket from 'react-websocket';
 import ItemTable from './itemTable.js';
+import queryString from "query-string";
+import {Alert} from "react-bootstrap";
 class ItemRow extends React.Component {
     render() {
         return (
@@ -22,7 +24,7 @@ class LiveFeed extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {rows : [], msg : "test", league : "Legacy", type : "Ancient%20Reliquary%20Key"};
+    this.state = {rows : []};
   }
 
     handleData(data) {
@@ -47,9 +49,23 @@ class LiveFeed extends React.Component {
     }
 
     render() {
+        if (!this.props.form){
+            return null;
+        }
+        else if (this.props.form.error){
+            return (
+                <div className="container main top30">
+                    <Alert bsStyle="warning">
+                        <strong>Error =====> </strong> Search parameters invalid, enter either a name or a type
+                    </Alert>
+                </div>
+            );
+        }
+        const wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+        console.log(wsQuery);
         return (
             <div>
-              <Websocket url={'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?league=' + this.state.league + '&type=' + this.state.type}
+              <Websocket url={wsQuery}
                          onMessage={this.handleData.bind(this)}/>
             <ItemTable rows={this.state.rows} key="1"/>
             </div>

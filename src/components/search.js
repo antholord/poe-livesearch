@@ -74,11 +74,10 @@ class Search extends React.Component {
 }
 
 function validate(values) {
-    console.log(values);
+
     const errors = {};
     if (!values.name && !values.type){
         errors.name = 'Enter a type or a name';
-        //errors.type = 'Enter a type or a name';
     }
     return errors;
 }

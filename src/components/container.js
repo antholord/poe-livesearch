@@ -5,10 +5,15 @@ import Search from "./search";
 
 
 class Container extends React.Component {
+
     constructor(props){
         super(props);
-        this.state = {league : "Hardcore Legacy"/*, form : {name : "", type : ""}*/};
+        if (localStorage.getItem('league') === null) {localStorage.setItem('league', 'legacy');}
+        let _league = localStorage.getItem('league');
+        this.state = {league : _league};
         this.onSubmit = this.onSubmit.bind(this);
+        this.onLeagueChange = this.onLeagueChange.bind(this);
+        console.log(_league);
     };
 
     onSubmit(form) {
@@ -19,7 +24,10 @@ class Container extends React.Component {
         }
     };
 
-
+    onLeagueChange(league) {
+        localStorage.setItem('league', league);
+        this.setState({league});
+    }
     render(){
         let key = '1';
         if (this.state.form){
@@ -27,7 +35,7 @@ class Container extends React.Component {
         }
         return (
                 <div>
-                <Header league={this.state.league} onLeagueChange={league => this.setState({league})}/>
+                <Header league={this.state.league} onLeagueChange={this.onLeagueChange}/>
                 <Search  onSubmit={this.onSubmit}/>
                 <LiveFeed league={this.state.league} form={this.state.form} rows = {[]} key={key}/>
                 </div>

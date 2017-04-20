@@ -7,6 +7,7 @@ import {DropdownButton, MenuItem} from "react-bootstrap";
 
 
 const Header = ({league, onLeagueChange}) => {
+
     return (
         <div className="container-fluid main header">
             <div className="col-lg-12 " id="topBanner">
@@ -30,24 +31,4 @@ const Header = ({league, onLeagueChange}) => {
     );
 };
 export default Header;
-
-
-
-
-
-/*
-const Header extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {league : "Hardcore Legacy"};
-        this.changeLeague = this.changeLeague.bind(this);
-    }
-    changeLeague(event) {
-        this.setState({league : event});
-        this.props.onLeagueChange();
-    }
-    render() {
-
-    }
-}*/
 

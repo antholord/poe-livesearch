@@ -1,0 +1,280 @@
+* { box-sizing: border-box;}
+
+/* basic stylings ------------------------------------------ */
+
+/* form starting stylings ------------------------------- */
+.group 			  {
+    position:relative;
+    margin-bottom:45px;
+
+}
+input, textarea {
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:300px;
+    border:none;
+    border-bottom: 1px solid #757575;
+    color:black;
+    margin-right:10px;
+}
+textarea {
+    position: relative;
+    font-family:'Roboto';
+    max-width: 300px;
+
+    /* fallback height for Opera Mini*/
+    height: 6em;
+
+    /* height for 3 lines + padding top and bottom*/
+    height: calc(1.6em*3 + 20px);
+
+    line-height: 1.6em;
+    padding-left: 5px;
+    /*remove scrollbar in IE*/
+    overflow: auto;
+
+}
+
+input:focus, textarea:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label,
+input:placeholder-shown ~ label,
+textarea:placeholder-shown ~ label {
+    color:#757575;
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+    z-index: 1;
+}
+
+/* active state */
+/* changed from input:valid to a state which check if input is empty*/
+input:focus ~ label,
+textarea:focus ~ label,
+input:not(:placeholder-shown) ~ label,
+textarea:not(:placeholder-shown) ~ label {
+    top:-20px;
+    font-size:14px;
+    color:#DCD3C3;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+    content:'';
+    height:5px;
+    width:0;
+    bottom:1px;
+    position:absolute;
+    background:#DCD3C3;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+}
+.bar:before {
+    left:50%;
+}
+.bar:after {
+    right:50%;
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after,
+textarea:focus ~ .bar:before, textarea:focus ~ .bar:after
+{
+    width:50%;
+}
+
+
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+    position:absolute;
+    height:1.6em;
+    width:200px;
+    top:10px;
+    left:0;
+    pointer-events:none;
+    opacity:0;
+    background: #DCD3C3
+}
+
+/* active state */
+input:focus ~ .highlight,
+textarea:focus ~ .highlight{
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+/* changed Keyframes from animating the background to opacity */
+@-webkit-keyframes inputHighlighter {
+    from { opacity: .5; }
+    to 	{ width:0; opacity: 0; }
+}
+@-moz-keyframes inputHighlighter {
+    from { opacity: .5; }
+    to 	{ width:0; opacity: 0; }
+}
+@keyframes inputHighlighter {
+    from { opacity: .5; }
+    to 	{ width:0; opacity: 0; }
+}
+
+
+/* add support for no-required inputs and textareas */
+/* !!IMPORTANT FOR THE MARKUP: REQUIRES AN EMPTY PLACEHOLDER ATTRIBUTE FOR ALL INPUTS */
+
+
+/* styling no-required tags */
+input:not([required]) ~ label::after {
+
+    content: ''
+
+}
+
+/* set input, label, heighlighter and bar to red if the input is invalid and isn't empty*/
+
+/* INPUT */
+input:not(:placeholder-shown):invalid,
+textarea:not(:placeholder-shown):invalid{
+    /* Google material color red 500 */
+    border-bottom: 2px solid #F44336;
+}
+
+/* LABEL */
+input:not(:placeholder-shown):invalid ~ label,
+textarea:not(:placeholder-shown):invalid ~ label{
+    /* Google material color red 500 */
+    color: #F44336;
+}
+
+/* HIGHTLIGHTER */
+input:not(:placeholder-shown):invalid ~ .highlight,
+textarea:not(:placeholder-shown):invalid ~ .highlight{
+    /* Google material color red 500 */
+    background: #F44336;
+}
+
+/* BAR */
+input:not(:placeholder-shown):invalid ~ .bar::after,
+input:not(:placeholder-shown):invalid ~ .bar::before,
+textarea:not(:placeholder-shown):invalid ~ .bar::after,
+textarea:not(:placeholder-shown):invalid ~ .bar::before{
+    /* Google material color red 500 */
+    background: #F44336;
+}
+
+
+/* The same with valid inputs... */
+
+/* INPUT */
+input:not(:placeholder-shown):valid,
+textarea:not(:placeholder-shown):valid{
+    /* Google material color green 500*/
+    border-bottom: 2px solid #DCD3C3;
+}
+
+/* LABEL */
+input:not(:placeholder-shown):valid ~ label,
+textarea:not(:placeholder-shown):valid ~ label{
+    /* Google material color green 500*/
+    color: #DCD3C3;
+}
+
+/* HIGHTLIGHTER */
+input:not(:placeholder-shown):valid ~ .highlight,
+textarea:not(:placeholder-shown):valid ~ .highlight{
+    /* Google material color green 500*/
+    background: #DCD3C3;
+}
+
+/* BAR */
+input:not(:placeholder-shown):valid ~ .bar::after,
+input:not(:placeholder-shown):valid ~ .bar::before,
+textarea:not(:placeholder-shown):valid ~ .bar::after,
+textarea:not(:placeholder-shown):valid ~ .bar::before{
+    /* Google material color green 500*/
+    background: #DCD3C3;
+}
+
+
+li.restored-item {
+    animation:
+        /*make sure to open space up before bringing the item into position*/
+            openspace .3s ease forwards,
+            restored-item-animation .3s .3s cubic-bezier(0,.8,.32,1.07) forwards;
+}
+
+@keyframes openspace {
+    to {
+        height: auto;
+    }
+}
+
+@keyframes restored-item-animation {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+li.removed-item {
+    animation: removed-item-animation .6s cubic-bezier(.55,-0.04,.91,.94) forwards;
+}
+
+@keyframes removed-item-animation {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/*newly added items start faded out and translated 400px upwards on the y-axis*/
+li.new-item {
+    opacity: 0;
+    animation: new-item-animation .3s linear forwards;
+}
+
+@keyframes new-item-animation {
+    from {
+        opacity: 0;
+        transform: translateY(-400px);
+    }
+
+    to {
+        opacity: 1;
+        transform : translateY(0);
+    }
+}
+
+.slide-fade li {
+    transition: all 0.4s ease-out;
+    opacity: 0;
+}
+.slide-fade li.show {
+    opacity: 1;
+}
+
+
+
+

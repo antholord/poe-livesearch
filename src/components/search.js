@@ -6,7 +6,6 @@ import {
 import {reduxForm} from "redux-form";
 
 
-
 class Search extends React.Component {
     /*constructor(props){
         super(props);
@@ -41,21 +40,28 @@ class Search extends React.Component {
         return (
 
                     <Panel className="container main">
+                        <h2>Search</h2>
                     <div className="row search">
                         <Form inline onSubmit={handleSubmit} className="inline">
 
                                             <FormGroup controlId="name" role="form">
-                                                <ControlLabel>Name</ControlLabel>
-                                                {' '}
-                                                <input type="text" placeholder="" value="" className="form-control right10" {...domOnlyProps(name)}/>
-                                                <div className="text-help">{name.error}</div>
+                                                <div className="group">
+                                                    <input type="text" placeholder=" " {...domOnlyProps(name)}/>
+                                                    <span className="highlight"/>
+                                                    <span className="bar"/>
+                                                    <label>Name</label>
+                                                </div>
+
                                             </FormGroup>
+
                                             {' '}
                                             <FormGroup controlId="type">
-                                                <ControlLabel>Type</ControlLabel>
-                                                {' '}
-                                                <input type="text" placeholder="" className="form-control right10" {...domOnlyProps(type)}/>
-                                                <div className="text-help">{type.error}</div>
+                                                <div className="group">
+                                                    <input type="text" placeholder=" " {...domOnlyProps(type)}/>
+                                                    <span className="highlight"/>
+                                                    <span className="bar"/>
+                                                    <label>Type / Base</label>
+                                                </div>
                                             </FormGroup>
                                             {' '}
                                             <div className="row col-md-12">
@@ -73,6 +79,12 @@ class Search extends React.Component {
 
 }
 
+/*
+ <ControlLabel>Name</ControlLabel>
+ {' '}
+ <input type="text" placeholder="" value="" className="form-control right10" />
+ <div className="text-help">{name.error}</div>
+ */
 function validate(values) {
 
     const errors = {};

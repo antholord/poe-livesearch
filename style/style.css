@@ -83,9 +83,31 @@ tbody.itemBody{
 }
 .itemPanel{
     width:100%;
-    margin : 10px;
+    margin-top : 10px;
     background-color: #18121E;
+    margin-bottom : 0 !important;
 }
 .media-right{
-    min-width:150px;
+    width:25% !important;
+}
+.implicitModsList{
+    border-bottom:1px solid;
+}
+
+h5 {
+    font-size: 25px;
+}
+
+
+
+h5, h6 {
+    width: 50%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+h6 {
+    margin-right:10px !important;
+    font-size: 16px;
 }

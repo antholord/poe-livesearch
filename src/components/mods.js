@@ -3,45 +3,47 @@
  */
 import React from 'react';
 
-class Mods extends React.Component{
-    constructor(props){
-        super(props);
+function PrintMods(props) {
+    const print = props.mod.map((i, index) => {
+        return (
+            <li key={index}>
+                {i}
+            </li>
+        );
+    });
+    return <div>{print}</div>;
 
+/*
+    if (props.mod && props.mod.length > 0){
+        {print}
+    }else{
+        return <div/>
     }
 
-    printMods(mod) {
-        if (mod && mod.length > 0){
-            mod.map((i, index) => {
-                return (
-                    <li>
-                        {i}
-                    </li>
-                );
-            });
-        }else{
-            return <div/>;
-        }
 
-    };
-    render() {
+    return <span>WRONG</span>*/
+}
+
+const Mods = (props) => {
+
         return (
             <div>
-                <div>
-                    <ul className="list list-unstyled implicitModsList">
-                        {this.printMods(this.props.item.implicitMods)}
-                    </ul>
-                </div>
-                <div>
-                <ul className="list list-unstyled">
-                    {this.printMods(this.props.item.explicitMods)}
-                </ul>
-                </div>
+                {props.item.implicitMods && props.item.implicitMods.length>0 ? (
+                <ul className="list list-unstyled implicitModsList">
+                    <PrintMods mod={props.item.implicitMods} key="implicit"/>
+                    <div className="borderDiv"/>
+                </ul>) : (null)}
+                {props.item.explicitMods && props.item.explicitMods.length>0 ? (
+                    <ul className="list list-unstyled">
+                        <PrintMods mod={props.item.explicitMods} key="explicit"/>
+                    </ul>) : (null)}
+                {props.item.craftedMods && props.item.craftedMods.length>0 ? (
+                    <ul className="list list-unstyled craftedModsList">
+                        <PrintMods mod={props.item.craftedMods} key="crafted"/>
+                    </ul>) : (null)}
             </div>
         );
-    }
-
-
-}
+};
 
 
 

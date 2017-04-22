@@ -71,10 +71,7 @@ colored, .colored a {
     background:none!important;
     color:inherit;
     border:none;
-    padding:0!important;
     font: inherit;
-    /*border is optional*/
-    border-bottom:1px solid #444;
     cursor: pointer;
 }
 
@@ -87,11 +84,11 @@ tbody.itemBody{
     background-color: #18121E;
     margin-bottom : 0 !important;
 }
-.media-right{
-    width:25% !important;
-}
 .implicitModsList{
-    border-bottom:1px solid;
+    position:relative;
+}
+.craftedModsList{
+    color:#E6D5FF;
 }
 
 h5 {
@@ -110,4 +107,27 @@ h5, h6 {
 h6 {
     margin-right:10px !important;
     font-size: 16px;
+}
+.flexBottom {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+.flexBottom span, button{
+    padding-top:10px;
+    margin-right:30px;
+}
+.flexBottom button{
+    padding-top:9px;
+}
+.borderDiv {
+    border-bottom:1px solid;
+    width:50%;
+}
+.f14{
+    font-size:14px;
+}
+.f16{
+    font-size:16px;
 }

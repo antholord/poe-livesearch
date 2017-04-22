@@ -25,6 +25,8 @@ const Header = ({league, onLeagueChange}) => {
                         <MenuItem eventKey="Legacy">Legacy</MenuItem>
                         <MenuItem eventKey="Hardcore Legacy">Hardcore Legacy</MenuItem>
                     </DropdownButton>
+                    <span className="f16">More search options to come later. Search is instantaneous because there's no indexing. You see items as the PoE API displays them</span>
+                    <br />
                 </div>
             </div>
         </div>

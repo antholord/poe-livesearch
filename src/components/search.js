@@ -4,6 +4,7 @@ import {
     Form, FormGroup, ControlLabel, FormControl, Button, Panel
 } from 'react-bootstrap'
 import {reduxForm} from "redux-form";
+import ReactTooltip from 'react-tooltip';
 
 
 class Search extends React.Component {
@@ -50,6 +51,7 @@ class Search extends React.Component {
                                                     <span className="highlight"/>
                                                     <span className="bar"/>
                                                     <label>Name</label>
+
                                                 </div>
 
                                             </FormGroup>
@@ -57,10 +59,11 @@ class Search extends React.Component {
                                             {' '}
                                             <FormGroup controlId="type">
                                                 <div className="group">
-                                                    <input type="text" placeholder=" " {...domOnlyProps(type)}/>
+                                                    <input type="text" placeholder=" " data-offset="{'top': 5}" data-multiline="true" data-effect="solid" data-tip="Will add a list of options later.<br /> Try Exalted Orb, Ancient Reliquary Key, Vaal Regalia, etc"{...domOnlyProps(type)}/>
                                                     <span className="highlight"/>
                                                     <span className="bar"/>
                                                     <label>Type / Base</label>
+                                                    <ReactTooltip/>
                                                 </div>
                                             </FormGroup>
                                             {' '}

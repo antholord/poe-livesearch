@@ -26,27 +26,29 @@ class ItemRow extends React.Component {
                             <div className="media-heading"><h5>{r.Item.name}</h5>   <h6>{'   ' + r.Item.typeLine}</h6></div>
                         </div>
                         <div className="media-middle">
-                        <div className="col-md-6">
-                            <Mods item={r.Item} key={1}/>
+                        <div className="col-md-5">
+                            <Mods item={r.Item}/>
                         </div>
                         <div className="col-md-6">
 
                         </div>
                         </div>
-                        <div className="media-bottom">
-                            <span>Name : {r.lastCharacterName}  {'  '}  Account : {r.accountName}</span>
+                        <div className="media-right">
+
                         </div>
                     </div>
-                    <div className="media-right">
-                        <span className="media-top"> Note : {r.Item.note}</span>
+                    <div className="media-bottom flexBottom">
+                        <span>Name : {r.lastCharacterName}</span><span>  Account : {r.accountName}</span>
+                        <span className=""> Note : {r.Item.note}</span>
                         <br/>
                         <CopyToClipboard text={msg} onCopy={() => this.setState({copied: true})}>
-                            <button type='text' className="btnToLink media-bottom"> ~Message seller~ </button>
+                            <button type='text' className="btnToLink media-bottom pull-right media-right"> ~Message seller~ </button>
                         </CopyToClipboard>
                         <CopyToClipboard text={JSON.stringify(r)} onCopy={() => this.setState({copied: true})}>
                             <button type='text' className="btnToLink media-bottom"> debug </button>
                         </CopyToClipboard>
                     </div>
+
                 </Panel>
             </li>
 

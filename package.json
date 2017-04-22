@@ -40,6 +40,7 @@
     "react-redux": "^5.0.4",
     "react-router": "^2.0.1",
     "react-tap-event-plugin": "^2.0.1",
+    "react-tooltip": "^3.3.0",
     "react-websocket": "^1.1.6",
     "redux": "^3.0.4",
     "redux-form": "^4.1.3",

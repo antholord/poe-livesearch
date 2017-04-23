@@ -11,7 +11,7 @@ import ItemRow from './itemRow'
 
 
 const ItemTable = (props) => {
-    const itemList = props.rows.map((item, index) => {
+    const itemList = props.rows.reverse().map((item, index) => {
 
         return <ItemRow item={item} key={index}/>
 });

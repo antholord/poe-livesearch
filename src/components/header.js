@@ -18,14 +18,14 @@ const Header = ({league, onLeagueChange}) => {
                             <a href="/"><b>Path of Exile Live Search</b></a>
                         </h1>
                     </div>
-                    <h1>*STILL IN DEVELOPMENT*</h1>
+                    <h1>*ALPHA VERSION*</h1>
                 </div>
                 <div className="row bot10">
                     <DropdownButton onSelect={onLeagueChange} title={league} id="leagueDropdown">
                         <MenuItem eventKey="Legacy">Legacy</MenuItem>
                         <MenuItem eventKey="Hardcore Legacy">Hardcore Legacy</MenuItem>
                     </DropdownButton>
-                    <span className="f16">More search options to come later. Search is instantaneous because there's no indexing. You see items as the PoE API displays them</span>
+                    <span className="f16">More search options to come later. Search is instantaneous because there's no indexing. You see items with as little delay as possible. If you put an item for sale and it doesn't show up instantly, it's the POE API being slow.</span>
                     <br />
                 </div>
             </div>

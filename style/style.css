@@ -131,3 +131,12 @@ h6 {
 .f16{
     font-size:16px;
 }
+.smallInfo{
+    color:grey;
+    margin-top:-15px;
+}
+
+.corrupted{
+    color:red;
+    font-size:16px;
+}

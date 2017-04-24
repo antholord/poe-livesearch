@@ -25,6 +25,7 @@ colored, .colored a {
 }
 .search {
     margin:10px;
+    vertical-align:bottom !important;
 }
 
 .top5 { margin-top:5px; }
@@ -139,4 +140,105 @@ h6 {
 .corrupted{
     color:red;
     font-size:16px;
+}
+.minmax input{
+    width:50px;
+    margin-right:1px;
+    position:relative;
+}
+.minmaxHeader{
+    position:absolute;
+    margin-bottom:15px;
+    top:-40px;
+    left:0px;
+    font-size:17px;
+}
+
+FormGroup{
+    margin-right:10px;
+}
+.layout.vertical {
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    display:block !important;
+}
+.layout.horizontal, .layout.vertical {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.flex, .flex-1 {
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+}
+.icon-wrap{
+    width:100px;
+}
+.item-heigth3{
+    min-height:141px;
+}
+.item-width2{
+    min-width:94px;
+}
+.sockets {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width:100%;
+    display:block !important;
+}
+.socket {
+    height: 47px;
+    width: 47px;
+    float: left;
+}
+.socket-right {
+    float:right;
+}
+.socket-G {
+    background-image: url(//web.poecdn.com/gen/image/YTozOntpOjA7aTo1O2k6/MjthOjM6e3M6Mjoic3Qi/O3M6MDoiIjtzOjY6ImNv/bG91ciI7czoxOiJHIjtz/OjE6InMiO2Q6MC42MDg1/MTkyNjk3NzY4NzYzMTt9/aToxO2k6MTM7fQ,,/16d9a0bec9/Socket.png);
+}
+.socket-link0 {
+    left: 28.60041px;
+    top: 16.12576px;
+}
+.socket-link1 {
+    left: 28.60041px;
+    top: 16.12576px;
+}
+.socket-link2 {
+    left: 28.60041px;
+    top: 63.59026px;
+}
+.socket-link4 {
+    left: 28.60041px;
+    top: 111.05477px;
+}
+.item-width1 .socket-link1, .socket-link3 {
+    top: 76.06491px;
+}
+.item-width1 .socket-link0, .socket-link1 {
+    left: 63.59026px;
+    top: 28.60041px;
+}
+.horizontal-link, .socket-link0, .socket-link2, .socket-link4 {
+    width: 37.72819px;
+    height: 15.21298px;
+    background-image: url(//web.poecdn.com/gen/image/YTozOntpOjA7aTo1O2k6/MjthOjM6e3M6NDoidHlw/ZSI7czo2OiJzb2NrZXQi/O3M6Mjoic3QiO3M6NDoi/bGluayI7czo0OiJ2ZXJ0/IjtiOjA7fWk6MTtpOjEz/O30,/88e64a4f5d/Socket_Link_Horizontal.png);
+}
+.verticalLink, .item-width1 .socket-link0, .socket-link1, .socket-link3, .item-width1 .socket-link2 {
+    width: 14px;
+    height: 37.72819px;
+    background-image: url(//web.poecdn.com/gen/image/YTozOntpOjA7aTo1O2k6/MjthOjM6e3M6NDoidHlw/ZSI7czo2OiJzb2NrZXQi/O3M6Mjoic3QiO3M6NDoi/bGluayI7czo0OiJ2ZXJ0/IjtiOjE7fWk6MTtpOjEz/O30,/e74ea91157/Socket_Link_Vertical.png);
+}
+.socket-link {
+    position: absolute;
+}
+.item-width1 .socket-link1, .item-width1 .socket-link2, .socket-link3, .item-width1 .socket-link0 {
+    left: 16.12576px;
 }

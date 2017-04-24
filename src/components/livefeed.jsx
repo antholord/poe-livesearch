@@ -9,8 +9,20 @@ class LiveFeed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {rows : []};
+    this.countLinks = this.countLinks.bind(this);
   }
-
+    countLinks(stashItem) {
+        let a;
+        if (stashItem.Item.sockets){
+            a = stashItem.Item.sockets.reduce(function (agg, curr) {
+                agg[curr.group] ? agg[curr.group]++ : agg[curr.group] = 1;
+                return agg
+            }, {})
+        }else {
+            return null;
+        }
+        return a;
+    }
     handleData(data) {
       let result;
       try{
@@ -20,6 +32,8 @@ class LiveFeed extends React.Component {
           console.log(data);
       }
         if (result){
+            result.Item.links = this.countLinks(result);
+
             this.setState({
                 rows: this.state.rows.concat(result)
             });

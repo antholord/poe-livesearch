@@ -5,6 +5,7 @@ import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import {Panel} from "react-bootstrap";
 import Mods from './mods'
+import Image from "./image";
 
 
 
@@ -12,18 +13,34 @@ class ItemRow extends React.Component {
     constructor(props){
         super(props);
         this.state = { copied : false};
+        this.displayRequirements = this.displayRequirements.bind(this);
+        this.displayLinks = this.displayLinks.bind(this);
     }
-
-    countLinks() {
-        if (this.props.item.Item.sockets){
-            this.props.item.Item.sockets.map((socket) => {
-
-            })
-        }else {
+    displayRequirements(){
+        if (!this.props.item.Item.requirements){
             return null;
         }
-
+        return (
+            <div className="smallInfo flexBottom"><span>ilvl : {this.props.item.Item.ilvl}</span>
+                {(this.props.item.Item.requirements[0] && this.props.item.Item.requirements[0].name === "Level") ? <span>Req : Lvl {this.props.item.Item.requirements[0].values[0][0]}</span> : null}
+                {(this.props.item.Item.requirements[1] && this.props.item.Item.requirements[1].name) ? <span>{this.props.item.Item.requirements[1].name}{' : '}{this.props.item.Item.requirements[1].values[0][0]}</span> : null}
+                {(this.props.item.Item.requirements[2] && this.props.item.Item.requirements[2].name) ? <span>{this.props.item.Item.requirements[2].name}{' : '}{this.props.item.Item.requirements[2].values[0][0]}</span> : null}
+                {(this.props.item.Item.requirements[3] && this.props.item.Item.requirements[3].name) ? <span>{this.props.item.Item.requirements[3].name}{' : '}{this.props.item.Item.requirements[3].values[0][0]}</span> : null}
+                <span>{(!this.props.item.Item.identified) ? 'Unidentified' : null}</span>
+            </div>
+        );
     }
+    displayLinks() {
+        let s = '';
+        if (this.props.item.Item.links) {
+            Object.values(this.props.item.Item.links).map((item) => {
+                s += (item>1) ? item + 'L  ' : '';
+            })
+        }
+        return s
+    }
+
+
     render() {
         const r = this.props.item;
         const msg = '@' + r.lastCharacterName + ' Hi, I would like to purchase ' + r.Item.name + ' ' + r.Item.typeLine + ' listed for ' + r.Item.note + ' in tab ' + r.stash;
@@ -31,17 +48,13 @@ class ItemRow extends React.Component {
             <li className="media container-fluid">
                 <Panel className="itemPanel">
 
-                    <div className="media-left"><img src={r.Item.icon}/></div>
+                    <div className="media-left">
+                        <Image key="1" item={r}/>
+                    </div>
                     <div className="media-body">
                         <div className="media-top">
                             <div className="media-heading"><h5>{r.Item.name}</h5>   <h6>{'   ' + r.Item.typeLine}</h6><span className="corrupted">{(r.Item.corrupted) ? 'Corrupted' : null}</span></div>
-                            <div className="smallInfo flexBottom"><span>ilvl : {r.Item.ilvl}</span>
-                                {(r.Item.requirements[0] && r.Item.requirements[0].name === "Level") ? <span>Req : Lvl {r.Item.requirements[0].values[0][0]}</span> : null}
-                                {(r.Item.requirements[1] && r.Item.requirements[1].name) ? <span>{r.Item.requirements[1].name}{' : '}{r.Item.requirements[1].values[0][0]}</span> : null}
-                                {(r.Item.requirements[2] && r.Item.requirements[2].name) ? <span>{r.Item.requirements[2].name}{' : '}{r.Item.requirements[2].values[0][0]}</span> : null}
-                                {(r.Item.requirements[3] && r.Item.requirements[3].name) ? <span>{r.Item.requirements[3].name}{' : '}{r.Item.requirements[3].values[0][0]}</span> : null}
-                                <span>{(!r.Item.identified) ? 'Unidentified' : null}</span>
-                            </div>
+                            {this.displayRequirements()}
                         </div>
                         <div className="media-middle">
                         <div className="col-md-5">
@@ -50,11 +63,13 @@ class ItemRow extends React.Component {
                         <div className="col-md-6">
                         <table>
                             <thead>
-                            <th>Sockets</th>
+                            <tr>
+                                <th>Sockets</th>
+                            </tr>
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{r.Item.sockets.length}s {' '} {countLinks}</td>
+                                <td>{r.Item.sockets.length}s {' '} <span>{this.displayLinks()}</span></td>
                             </tr>
                             </tbody>
                         </table>

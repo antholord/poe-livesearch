@@ -1,14 +1,16 @@
 import React from 'react';
 import Websocket from 'react-websocket';
-import ItemTable from './itemTable.js';
 import queryString from "query-string";
 import {Alert} from "react-bootstrap";
+import ItemRow from "./itemRow";
+
 
 class LiveFeed extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {rows : []};
+    this.localRows = [];
+    this.state = {rows : 0};
     this.countLinks = this.countLinks.bind(this);
   }
     countLinks(stashItem) {
@@ -32,11 +34,14 @@ class LiveFeed extends React.Component {
           console.log(data);
       }
         if (result){
+
             result.Item.links = this.countLinks(result);
 
             this.setState({
-                rows: this.state.rows.concat(result)
+                rows: this.state.rows+=1
             });
+            this.localRows.unshift(<ItemRow item={result} key={this.localRows.length} index={this.localRows.length}/>)
+
         }
     }
 
@@ -58,7 +63,12 @@ class LiveFeed extends React.Component {
             <div>
               <Websocket url={wsQuery}
                          onMessage={this.handleData.bind(this)}/>
-            <ItemTable rows={this.state.rows} key={wsQuery}/>
+                <div className="container main top30">
+                    {(this.localRows.length === 0) ? <h2 className="text-center">Listening...</h2> : null}
+                    <ul className="col-md-12 list-unstyled">
+                        {this.localRows}
+                    </ul>
+                </div>
             </div>
         );
     }

@@ -43,24 +43,25 @@ class ItemRow extends React.Component {
 
     render() {
         const r = this.props.item;
+        console.log(this.props.index);
         const msg = '@' + r.lastCharacterName + ' Hi, I would like to purchase ' + r.Item.name + ' ' + r.Item.typeLine + ' listed for ' + r.Item.note + ' in tab ' + r.stash;
         return (
             <li className="media container-fluid">
                 <Panel className="itemPanel">
 
                     <div className="media-left">
-                        <Image key="1" item={r}/>
+                        <Image key={this.props.index+'-img'} item={r} index={this.props.index+'-img'}/>
                     </div>
                     <div className="media-body">
                         <div className="media-top">
-                            <div className="media-heading"><h5>{r.Item.name}</h5>   <h6>{'   ' + r.Item.typeLine}</h6><span className="corrupted">{(r.Item.corrupted) ? 'Corrupted' : null}</span></div>
+                            <div className="media-heading"><span className={"item itemframe" + r.Item.frameType}><h5 className={"item itemframe" + r.Item.frameType}>{r.Item.name}</h5></span>   <h6>{'   ' + r.Item.typeLine}</h6><span className="corrupted">{(r.Item.corrupted) ? 'Corrupted' : null}</span></div>
                             {this.displayRequirements()}
                         </div>
                         <div className="media-middle">
-                        <div className="col-md-5">
+                        <div className="col-md-6">
                             <Mods item={r.Item}/>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-5">
                         <table>
                             <thead>
                             <tr>
@@ -83,10 +84,10 @@ class ItemRow extends React.Component {
                         <span>Name : {r.lastCharacterName}</span><span>  Account : {r.accountName}</span>
                         <span className=""> Note : {r.Item.note}</span>
                         <br/>
-                        <CopyToClipboard text={msg} onCopy={() => this.setState({copied: true})}>
+                        <CopyToClipboard text={msg} /*onCopy={() => this.setState({copied: true})}*/>
                             <button type='text' className="btnToLink media-bottom pull-right media-right"> ~Message seller~ </button>
                         </CopyToClipboard>
-                        <CopyToClipboard text={JSON.stringify(r)} onCopy={() => this.setState({copied: true})}>
+                        <CopyToClipboard text={JSON.stringify(r)} /*onCopy={() => this.setState({copied: true})}*/>
                             <button type='text' className="btnToLink media-bottom"> debug </button>
                         </CopyToClipboard>
                     </div>

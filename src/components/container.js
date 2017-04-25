@@ -23,6 +23,8 @@ class Container extends React.Component {
         }else{
             this.setState({form});
         }
+        ga('set', 'page', '/search/');
+        ga('send', 'pageview');
     };
 
     onLeagueChange(league) {

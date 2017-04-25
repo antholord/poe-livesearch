@@ -46,20 +46,16 @@ class Image extends React.Component {
     }
     computeLinks() {
         let links = [];
-        const direction = ['left','left','right','right','left','left'];
+        const direction = ['left','left','right right5','right','left','left'];
         if (!r.sockets){return null}
         let currGroup = -1;
         for (let i=0;i<r.sockets.length;i++){
-            if (i===0){
-                currGroup = r.sockets[i].group;
-                links.push(<Socket color={r.sockets[0].attr} direction={direction[i]} pos={i} key={"socket"+(i-1)}/>);
-                continue;
-            }
             if (r.sockets[i].group === currGroup){ //Same group, need to add a link!
-                links.push(<Link key={(i-1)} linkid={i-1}/>);
-                links.push(<Socket color={r.sockets[0].attr} direction={"left"} pos={i} key={"socket"+(i-1)}/>);
+                links.push(<Link key={this.props.index+'-link'+(i)} linkid={i-1}/>);
+            }else{
+                currGroup = r.sockets[i].group;
             }
-
+            links.push(<Socket color={r.sockets[0].attr} direction={direction[i]} pos={i} key={this.props.index+"-socket"+(i)}/>);
 
         }
        /* if (r.sockets[0]){
@@ -74,12 +70,14 @@ class Image extends React.Component {
 
     render() {
         return (
-                <div style={{position:'relative'}} className="icon-wrap flex layout vertical">
+
+                <div style={{position:'relative'}} className={"flex layout vertical item-heigth" + r.h + " item-width" + r.w}>
                     <img src={r.icon}/>
                     <div className="sockets">
                     {this.computeLinks()}
                     </div>
                 </div>
+
         );
     }
 }

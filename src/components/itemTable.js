@@ -11,9 +11,10 @@ import ItemRow from './itemRow'
 
 
 const ItemTable = (props) => {
-    const itemList = props.rows.reverse().map((item, index) => {
-
-        return <ItemRow item={item} key={index}/>
+    var itemsArray = [];
+    const readNewItems = props.rows.reverse().map((item, index) => {
+        console.log(index);
+        itemsArray.push(<ItemRow item={item} key={index+item.id+item.Item.x+item.Item.y} index={index+item.id+item.Item.x+item.Item.y}/>)
 });
     if (props.rows.length === 0){
         return (
@@ -25,7 +26,8 @@ const ItemTable = (props) => {
     return (
             <div className="container main top30">
                 <ul className="col-md-12 list-unstyled">
-                    {itemList}
+                    {readNewItems}
+                    {itemsArray}
                 </ul>
             </div>
     );

@@ -6,6 +6,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import {Panel} from "react-bootstrap";
 import Mods from './mods'
 import Image from "./image";
+import _ from 'lodash';
 
 
 
@@ -15,6 +16,8 @@ class ItemRow extends React.Component {
         this.state = { copied : false};
         this.displayRequirements = this.displayRequirements.bind(this);
         this.displayLinks = this.displayLinks.bind(this);
+        this.buildMessage = this.buildMessage.bind(this);
+        this.findProp = this.findProp.bind(this);
     }
     displayRequirements(){
         if (!this.props.item.Item.requirements){
@@ -39,13 +42,36 @@ class ItemRow extends React.Component {
         }
         return s
     }
+    buildMessage() {
+        const r = this.props.item;
+        let s= '@' + r.lastCharacterName + ' Hi, I would like to purchase ' + r.Item.name + ' ' + r.Item.typeLine;
+        if (r.Item.note.length>0){
+            if (r.Item.note.substring(0,6) === "~price"){
+                s+= ' listed for ' + r.Item.note.substring(6,r.Item.note.length);
+            }else if (r.Item.note.substring(0,4) === "~b/o"){
+                s+= ' listed for ' + r.Item.note.substring(4,r.Item.note.length);
+            }
+        }
+        s+=' in tab "' + r.stash + '"';
+        return s;
+    }
+    findProp(s) {
+        let f = _.find(this.props.item.Item.properties, {name : s});
+        if (!f) return null;
+        let r='';
+        for (let i = 0;i<f.values.length;i++){
+            if (f.values[i][0]){
+                r+= f.values[i][0];
+            }
+        }
+
+        return r;
+    }
 
 
     render() {
         const r = this.props.item;
-        console.log(this.props.index);
-        const msg = '@' + r.lastCharacterName + ' Hi, I would like to purchase ' + r.Item.name + ' ' + r.Item.typeLine + ' listed for ' + r.Item.note + ' in tab ' + r.stash;
-        return (
+         return (
             <li className="media container-fluid">
                 <Panel className="itemPanel">
 
@@ -58,36 +84,74 @@ class ItemRow extends React.Component {
                             {this.displayRequirements()}
                         </div>
                         <div className="media-middle">
-                        <div className="col-md-6">
+                        <div className="">
                             <Mods item={r.Item}/>
                         </div>
-                        <div className="col-md-5">
-                        <table>
+                        </div>
+                    </div>
+                    <div className="media-body">
+                        <table className="table table-condensed row">
                             <thead>
-                            <tr>
-                                <th>Sockets</th>
+                            <tr className="center text-center">
+
+                                <th className="text-center">Armour</th>
+                                <th className="text-center">Evasion</th>
+                                <th className="text-center">Shield</th>
+                                <th className="text-center">Block</th>
+                                <th className="text-center">Crit</th>
+                                <th className="text-center">Qual</th>
+
                             </tr>
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{r.Item.sockets.length}s {' '} <span>{this.displayLinks()}</span></td>
+                                <td>{this.findProp("Armour")}</td>
+                                <td>{this.findProp("Evasion")}</td>
+                                <td>{this.findProp("Energy Shield")}</td>
+                                <td>{this.findProp("Block")}</td>
+                                <td>{this.findProp("Critical Strike Chance")}</td>
+                                <td>{this.findProp("Quality")}</td>
                             </tr>
+
                             </tbody>
                         </table>
-                        </div>
+                        <table className="table table-condensed row">
+                            <thead>
+                            <tr className="center text-center">
+
+                                <th className="text-center">pDPS</th>
+                                <th className="text-center">eDPS</th>
+                                <th className="text-center">DPS</th>
+                                <th className="text-center">APS</th>
+                                <th className="text-center">Range</th>
+
+                            </tr>
+                            </thead>
+                            <tbody className="text-center">
+                            <tr>
+                                <td>{this.findProp("Physical Damage") * this.findProp("Attacks per Second")}</td>
+                                <td>{this.findProp("Elemental Damage") * this.findProp("Attacks per Second")}</td>
+                                <td>{this.findProp("Energy Shield")}</td>
+                                <td>{this.findProp("Block")}</td>
+                                <td>{this.findProp("Critical Strike Chance")}</td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
                         </div>
                         <div className="media-right">
 
                         </div>
-                    </div>
+
                     <div className="media-bottom flexBottom">
                         <span>Name : {r.lastCharacterName}</span><span>  Account : {r.accountName}</span>
                         <span className=""> Note : {r.Item.note}</span>
                         <br/>
-                        <CopyToClipboard text={msg} /*onCopy={() => this.setState({copied: true})}*/>
+                        <CopyToClipboard text={this.buildMessage()}>
                             <button type='text' className="btnToLink media-bottom pull-right media-right"> ~Message seller~ </button>
                         </CopyToClipboard>
-                        <CopyToClipboard text={JSON.stringify(r)} /*onCopy={() => this.setState({copied: true})}*/>
+                        <CopyToClipboard text={JSON.stringify(r)}>
                             <button type='text' className="btnToLink media-bottom"> debug </button>
                         </CopyToClipboard>
                     </div>

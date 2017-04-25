@@ -33,7 +33,8 @@ class LiveFeed extends React.Component {
           console.log(e);
           console.log(data);
       }
-        if (result){
+        //FOR DEBUGGING ONLY
+        if (result /*&& this.localRows.length < 5*/){
 
             result.Item.links = this.countLinks(result);
 

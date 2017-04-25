@@ -21,6 +21,7 @@ class Container extends React.Component {
         if (!form || (!form.name && !form.type)){
             this.setState({form : {error : 1}})
         }else{
+            console.log(form);
             this.setState({form});
         }
         ga('set', 'page', '/search/');

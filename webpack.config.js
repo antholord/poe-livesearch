@@ -1,3 +1,4 @@
+let webpack = require("webpack");
 module.exports = {
   entry: [
     './src/index.js'
@@ -14,7 +15,14 @@ module.exports = {
       query: {
         presets: ['react', 'es2015', 'stage-1']
       }
-    }]
+    }],
+      plugins: [
+          new webpack.DefinePlugin({
+              'process.env': {
+                  NODE_ENV: JSON.stringify('production')
+              }
+          }), new webpack.optimize.UglifyJsPlugin()
+      ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -23,5 +31,6 @@ module.exports = {
     historyApiFallback: true,
     contentBase: './'
   }
-  
+
+
 };

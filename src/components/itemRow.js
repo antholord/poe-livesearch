@@ -3,14 +3,11 @@
  */
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import {Panel} from "react-bootstrap";
 import Mods from './mods'
 import Image from "./image";
-import _ from 'lodash';
-
-
 
 class ItemRow extends React.Component {
+
     constructor(props){
         super(props);
         this.state = { copied : false};
@@ -18,6 +15,23 @@ class ItemRow extends React.Component {
         this.displayLinks = this.displayLinks.bind(this);
         this.buildMessage = this.buildMessage.bind(this);
         this.findProp = this.findProp.bind(this);
+
+        this.armour = this.findProp("Armour");
+        this.evasion = this.findProp("Evasion");
+        this.es = this.findProp("Energy Shield");
+        this.block = this.findProp("Block");
+        this.crit = this.findProp("Critical Strike Chance");
+        this.quality = this.findProp("Quality");
+
+        this.aps = Number(this.findProp("Attacks per Second"));
+        this.phys = this.findProp("Physical Damage");
+        this.ele = this.findProp("Elemental Damage");
+        this.chaos = this.findProp("Chaos Damage");
+        this.cdps = (this.chaos) ? Math.round(this.chaos * this.aps) : '';
+        this.pdps = (this.phys) ? Math.round(this.phys * this.aps) : '';
+        this.edps = (this.ele) ? Math.round(this.ele * this.aps) : '';
+        this.dps = ((this.phys) ? this.pdps : 0) + ((this.ele) ? this.edps : 0) + ((this.chaos) ? this.cdps : 0);
+
     }
     displayRequirements(){
         if (!this.props.item.Item.requirements){
@@ -44,7 +58,7 @@ class ItemRow extends React.Component {
     }
     buildMessage() {
         const r = this.props.item;
-        let s= '@' + r.lastCharacterName + ' Hi, I would like to purchase ' + r.Item.name + ' ' + r.Item.typeLine;
+        let s= '@' + r.lastCharacterName + ' Hi, I would like to purchase your ' + r.Item.name + ' ' + r.Item.typeLine;
         if (r.Item.note.length>0){
             if (r.Item.note.substring(0,6) === "~price"){
                 s+= ' listed for ' + r.Item.note.substring(6,r.Item.note.length);
@@ -56,14 +70,21 @@ class ItemRow extends React.Component {
         return s;
     }
     findProp(s) {
-        let f = _.find(this.props.item.Item.properties, {name : s});
+        let f = this.props.item.Item.properties.find(function(o) {return name === s;});
+        //let f = _.find(this.props.item.Item.properties, {name : s});
         if (!f) return null;
-        let r='';
-        for (let i = 0;i<f.values.length;i++){
-            if (f.values[i][0]){
-                r+= f.values[i][0];
+        let r=0;
+        if (s.includes("Damage")){
+            for (let i = 0;i<f.values.length;i++){
+                let arr = f.values[i][0].split("-");
+                if (arr.length>0){
+                    r+= ((Number(arr[0]) + Number(arr[1])) / 2);
+                }
             }
+        }else{
+            return f.values[0][0];
         }
+
 
         return r;
     }
@@ -73,20 +94,33 @@ class ItemRow extends React.Component {
         const r = this.props.item;
          return (
             <li className="media container-fluid">
-                <Panel className="itemPanel">
-
+                <div className="panel itemPanel panel-default ">
+                    <div className="panel-body">
                     <div className="media-left">
                         <Image key={this.props.index+'-img'} item={r} index={this.props.index+'-img'}/>
+                        {(r.Item.stackSize) ? '# : ' + r.Item.stackSize : null}
                     </div>
                     <div className="media-body">
                         <div className="media-top">
-                            <div className="media-heading"><span className={"item itemframe" + r.Item.frameType}><h5 className={"item itemframe" + r.Item.frameType}>{r.Item.name}</h5></span>   <h6>{'   ' + r.Item.typeLine}</h6><span className="corrupted">{(r.Item.corrupted) ? 'Corrupted' : null}</span></div>
+                            <div className="media-heading">
+                                <span className={"item itemframe" + r.Item.frameType}>
+                                    <h5 className={"item itemframe" + r.Item.frameType}>
+                                        {r.Item.name}
+                                    </h5>
+                                </span>
+                                <h6>
+                                    {'   ' + r.Item.typeLine}
+                                </h6>
+                                <span className="corrupted">
+                                    {(r.Item.corrupted) ? 'Corrupted' : null}
+                                    </span>
+                            </div>
                             {this.displayRequirements()}
                         </div>
                         <div className="media-middle">
-                        <div className="">
-                            <Mods item={r.Item}/>
-                        </div>
+                            <div className="">
+                                <Mods item={r.Item}/>
+                            </div>
                         </div>
                     </div>
                     <div className="media-body">
@@ -105,12 +139,12 @@ class ItemRow extends React.Component {
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{this.findProp("Armour")}</td>
-                                <td>{this.findProp("Evasion")}</td>
-                                <td>{this.findProp("Energy Shield")}</td>
-                                <td>{this.findProp("Block")}</td>
-                                <td>{this.findProp("Critical Strike Chance")}</td>
-                                <td>{this.findProp("Quality")}</td>
+                                <td>{this.armour}</td>
+                                <td>{this.evasion}</td>
+                                <td>{this.es}</td>
+                                <td>{this.block}</td>
+                                <td>{this.crit}</td>
+                                <td>{this.quality}</td>
                             </tr>
 
                             </tbody>
@@ -123,18 +157,19 @@ class ItemRow extends React.Component {
                                 <th className="text-center">eDPS</th>
                                 <th className="text-center">DPS</th>
                                 <th className="text-center">APS</th>
-                                <th className="text-center">Range</th>
+                                <th className="text-center">Phys</th>
+                                <th className="text-center">Ele</th>
 
                             </tr>
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{this.findProp("Physical Damage") * this.findProp("Attacks per Second")}</td>
-                                <td>{this.findProp("Elemental Damage") * this.findProp("Attacks per Second")}</td>
-                                <td>{this.findProp("Energy Shield")}</td>
-                                <td>{this.findProp("Block")}</td>
-                                <td>{this.findProp("Critical Strike Chance")}</td>
-
+                                <td>{(this.pdps === 0) ? '' : this.pdps}</td>
+                                <td>{(this.edps === 0) ? '' : this.edps}</td>
+                                <td>{(this.dps === 0) ? '' : this.dps}</td>
+                                <td>{(this.aps === 0) ? '' : this.aps}</td>
+                                <td>{this.phys}</td>
+                                <td>{this.ele}</td>
                             </tr>
 
                             </tbody>
@@ -144,19 +179,22 @@ class ItemRow extends React.Component {
 
                         </div>
 
-                    <div className="media-bottom flexBottom">
-                        <span>Name : {r.lastCharacterName}</span><span>  Account : {r.accountName}</span>
-                        <span className=""> Note : {r.Item.note}</span>
-                        <br/>
-                        <CopyToClipboard text={this.buildMessage()}>
-                            <button type='text' className="btnToLink media-bottom pull-right media-right"> ~Message seller~ </button>
-                        </CopyToClipboard>
-                        <CopyToClipboard text={JSON.stringify(r)}>
-                            <button type='text' className="btnToLink media-bottom"> debug </button>
-                        </CopyToClipboard>
+                    <div className="media-bottom flexBottom col-md-12 top10">
+                        <div className="col-md-9">
+                            <span>Name : {r.lastCharacterName}</span><span>  Account : {r.accountName}</span>
+                            <span className=""> Note : {r.Item.note}</span>
+                        </div>
+                        <div className="col-md-3">
+                            <CopyToClipboard text={this.buildMessage()}>
+                                <button type='text' className="btnToLink media-bottom pull-right media-right"> ~Message seller~ </button>
+                            </CopyToClipboard>
+                            <CopyToClipboard text={JSON.stringify(r)}>
+                                <button type='text' className="btnToLink media-bottom media-right pull-right"> d </button>
+                            </CopyToClipboard>
+                        </div>
                     </div>
-
-                </Panel>
+                    </div>
+                </div>
             </li>
 
         );

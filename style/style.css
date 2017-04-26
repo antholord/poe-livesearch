@@ -277,3 +277,6 @@ h5.item.itemframe1 {
 h5.item.itemframe4 {
     color: #1ba29b !important;
 }
+.float-right{
+    float: right;
+}

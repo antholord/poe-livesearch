@@ -9,7 +9,7 @@ class LiveFeed extends React.Component {
 
   constructor(props) {
     super(props);
-    this.localRows = [];
+    this.localRows = props.localRows;
     this.state = {rows : 0};
     this.countLinks = this.countLinks.bind(this);
   }
@@ -34,15 +34,13 @@ class LiveFeed extends React.Component {
           console.log(data);
       }
         //FOR DEBUGGING ONLY
-        if (result /*&& this.localRows.length < 5*/){
-
+        if (result && this.localRows.length < 5){
+            console.log("Got " + result.Item.name);
             result.Item.links = this.countLinks(result);
-
-            this.setState({
-                rows: this.state.rows+=1
-            });
             this.localRows.unshift(<ItemRow item={result} key={this.localRows.length} index={this.localRows.length}/>)
-
+            this.setState({
+                rows: this.localRows.length
+            });
         }
     }
 
@@ -59,7 +57,14 @@ class LiveFeed extends React.Component {
                 </div>
             );
         }
+        /*let wsQuery;
+        if (process.env.NODE_ENV!=="production"){
+            wsQuery = 'ws://localhost:1337/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+        }else{
+            wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+        }*/
         const wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+
         return (
             <div>
               <Websocket url={wsQuery}

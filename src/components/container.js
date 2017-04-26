@@ -41,7 +41,7 @@ class Container extends React.Component {
                 <div>
                 <Header league={this.state.league} onLeagueChange={this.onLeagueChange}/>
                 <Search  onSubmit={this.onSubmit}/>
-                <LiveFeed league={this.state.league} form={this.state.form} rows = {[]} key={key}/>
+                <LiveFeed league={this.state.league} form={this.state.form} rows = {[]} localRows = {[]} key={key}/>
                 </div>
         );
     };

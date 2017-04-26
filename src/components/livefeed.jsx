@@ -34,8 +34,7 @@ class LiveFeed extends React.Component {
           console.log(data);
       }
         //FOR DEBUGGING ONLY
-        if (result && this.localRows.length < 5){
-            console.log("Got " + result.Item.name);
+        if (result/* && this.localRows.length < 5*/){
             result.Item.links = this.countLinks(result);
             this.localRows.unshift(<ItemRow item={result} key={this.localRows.length} index={this.localRows.length}/>)
             this.setState({

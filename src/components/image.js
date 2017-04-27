@@ -56,7 +56,6 @@ class Image extends React.Component {
                 currGroup = r.sockets[i].group;
             }
             links.push(<Socket color={r.sockets[i].attr} direction={direction[i]} pos={i} key={this.props.index+"-socket"+(i)}/>);
-
         }
        /* if (r.sockets[0]){
             return (

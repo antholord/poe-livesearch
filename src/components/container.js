@@ -15,6 +15,7 @@ class Container extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onLeagueChange = this.onLeagueChange.bind(this);
         console.log(_league);
+        this.ctr = 0;
     };
 
     onSubmit(form) {
@@ -22,6 +23,7 @@ class Container extends React.Component {
             this.setState({form : {error : 1}})
         }else{
             console.log(form);
+            this.ctr++;
             this.setState({form});
         }
         ga('set', 'page', '/search/');
@@ -41,7 +43,7 @@ class Container extends React.Component {
                 <div>
                 <Header league={this.state.league} onLeagueChange={this.onLeagueChange}/>
                 <Search  onSubmit={this.onSubmit}/>
-                <LiveFeed league={this.state.league} form={this.state.form} rows = {[]} localRows = {[]} key={key}/>
+                <LiveFeed league={this.state.league} form={this.state.form} rows = {[]} localRows = {[]} key={ctr}/>
                 </div>
         );
     };

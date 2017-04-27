@@ -15,7 +15,6 @@ class Socket extends React.Component {
 */
     render(){
         return (
-
             <div className={"socket socket-" + this.props.color + " socket-" + this.props.direction}/>
         );
     }
@@ -31,7 +30,6 @@ class Link extends React.Component {
      */
     render(){
         return (
-
             <div className={"socket-link socket-link" + this.props.linkid}/>
         );
     }

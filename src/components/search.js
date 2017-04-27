@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    Form, FormGroup, ControlLabel, FormControl, Button, Panel
+    Form, FormGroup, Button, Panel
 } from 'react-bootstrap'
 import {reduxForm} from "redux-form";
 import ReactTooltip from 'react-tooltip';
@@ -24,7 +24,7 @@ class Search extends React.Component {
                                   error,
                                   ...domProps
                               }) => domProps;
-        const {fields: {name, type, minSockets, maxSockets, minLinks, maxLinks}, handleSubmit} = this.props;
+        const {fields: {name, type, minSockets, maxSockets, minLinks, maxLinks, minIlvl, maxIlvl}, handleSubmit} = this.props;
         return (
 
             <Panel className="container main">
@@ -86,8 +86,22 @@ class Search extends React.Component {
                             </div>
                         </FormGroup>
                         <FormGroup controlId="maxLinks">
-                            <div className="minmax group">
+                            <div className="minmax group right10">
                                 <input type="text" placeholder=" " {...domOnlyProps(maxLinks)}/>
+                                <label>max</label>
+                            </div>
+                        </FormGroup>
+
+                        <FormGroup controlId="minIlvl">
+                            <div className="minmax group">
+                                <div className="minmaxHeader">Ilvl</div>
+                                <input type="text" placeholder=" " {...domOnlyProps(minIlvl)}/>
+                                <label>min</label>
+                            </div>
+                        </FormGroup>
+                        <FormGroup controlId="maxIlvl">
+                            <div className="minmax group right10">
+                                <input type="text" placeholder=" " {...domOnlyProps(maxIlvl)}/>
                                 <label>max</label>
                             </div>
                         </FormGroup>
@@ -97,6 +111,8 @@ class Search extends React.Component {
                             <p>{maxSockets.error}</p>
                             <p>{minLinks.error}</p>
                             <p>{maxLinks.error}</p>
+                            <p>{minIlvl.error}</p>
+                            <p>{maxIlvl.error}</p>
 
                         </div>
 
@@ -116,12 +132,6 @@ class Search extends React.Component {
 
 }
 
-/*
- <ControlLabel>Name</ControlLabel>
- {' '}
- <input type="text" placeholder="" value="" className="form-control right10" />
- <div className="text-help">{name.error}</div>
- */
 function validate(values) {
 
     const errors = {};
@@ -140,11 +150,18 @@ function validate(values) {
     if (values.maxLinks && !(values.maxLinks>=2 && values.maxLinks<=6)){
         errors.maxLinks = 'maxLinks must be between 2 and 6';
     }
+    if (values.minIlvl && !(values.minIlvl>=1 && values.minIlvl<=200)){
+        errors.minIlvl = 'minIlvl must be between 2 and 6';
+    }
+    if (values.maxIlvl && !(values.maxIlvl>=2 && values.maxIlvl<=200)){
+        errors.maxIlvl = 'maxIlvl must be between 2 and 6';
+    }
+    
     return errors;
 }
 
 export default reduxForm({
     form: 'Search',
-    fields: ['name', 'type', 'minSockets', 'maxSockets', 'minLinks', 'maxLinks'],
+    fields: ['name', 'type', 'minSockets', 'maxSockets', 'minLinks', 'maxLinks', 'minIlvl', 'maxIlvl'],
     validate: validate
 })(Search);

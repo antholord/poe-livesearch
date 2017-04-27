@@ -12,6 +12,7 @@ class LiveFeed extends React.Component {
     this.localRows = props.localRows;
     this.state = {rows : 0};
     this.countLinks = this.countLinks.bind(this);
+    console.log(process.env.NODE_ENV);
   }
     countLinks(stashItem) {
         let a;
@@ -62,7 +63,7 @@ class LiveFeed extends React.Component {
         }else{
             wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
         }*/
-        console.log(process.env.NODE_ENV);
+
         const wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
 
         return (

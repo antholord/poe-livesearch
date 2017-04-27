@@ -28,8 +28,13 @@ class Search extends React.Component {
         return (
 
             <Panel className="container main">
-                <h2>Search</h2>
-                <div className="row search">
+
+                <div className="row inline">
+                    <h2 className="inline">Search</h2>
+                    <span>Use exact names (case sensitive)</span>
+                </div>
+                <div className="row top15 search">
+
                     <Form inline onSubmit={handleSubmit} className="inline">
 
                         <FormGroup controlId="name" role="form">

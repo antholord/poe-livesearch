@@ -9,7 +9,7 @@ class Container extends React.Component {
 
     constructor(props){
         super(props);
-        if (localStorage.getItem('league') === null) {localStorage.setItem('league', 'legacy');}
+        if (localStorage.getItem('league') === null) {localStorage.setItem('league', 'Legacy');}
         let _league = localStorage.getItem('league');
         this.state = {league : _league};
         this.onSubmit = this.onSubmit.bind(this);

@@ -70,8 +70,9 @@ class ItemRow extends React.Component {
         return s;
     }
     findProp(s) {
-        if (!this.props.item.Item.properties) return null;
-        let f = this.props.item.Item.properties.find(function(o) {return name === s;});
+        if (this.props.item.Item.properties === null) return null;
+        console.log(this.props.item.Item.properties);
+        let f = this.props.item.Item.properties.find(function(o) {return o.name === s;});
         //let f = _.find(this.props.item.Item.properties, {name : s});
         if (!f) return null;
         let r=0;

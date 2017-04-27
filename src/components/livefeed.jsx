@@ -56,12 +56,13 @@ class LiveFeed extends React.Component {
                 </div>
             );
         }
-        /*et wsQuery;
+        /*let wsQuery;
         if (process.env.NODE_ENV!=="production"){
             wsQuery = 'ws://localhost:1337/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
         }else{
             wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
         }*/
+        console.log(process.env.NODE_ENV);
         const wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
 
         return (

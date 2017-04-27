@@ -4,7 +4,7 @@ import LiveFeed from "./livefeed";
 import Header from "./header.js";
 import Search from "./search";
 
-
+let ctr = 0;
 class Container extends React.Component {
 
     constructor(props){
@@ -15,7 +15,7 @@ class Container extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onLeagueChange = this.onLeagueChange.bind(this);
         console.log(_league);
-        this.ctr = 0;
+        ctr = 0;
     };
 
     onSubmit(form) {
@@ -23,7 +23,7 @@ class Container extends React.Component {
             this.setState({form : {error : 1}})
         }else{
             console.log(form);
-            this.ctr++;
+            ctr++;
             this.setState({form});
         }
         ga('set', 'page', '/search/');

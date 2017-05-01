@@ -36,9 +36,12 @@ class LiveFeed extends React.Component {
         //FOR DEBUGGING ONLY
         if (result/* && this.localRows.length < 5*/){
             result.Item.links = this.countLinks(result);
-            this.localRows.unshift(<ItemRow item={result} key={this.localRows.length} index={this.localRows.length}/>);
+            this.localRows.unshift(<ItemRow item={result} key={this.state.rows} index={this.state.rows}/>);
+            if (this.localRows.length >200){
+                this.localRows.pop()
+            }
             this.setState({
-                rows: this.localRows.length
+                rows: this.state.rows + 1
             });
         }
     }
@@ -51,14 +54,14 @@ class LiveFeed extends React.Component {
             return (
                 <div className="container main top30">
                     <Alert bsStyle="warning">
-                        <strong>Error =====> </strong> Search parameters invalid, enter either a name or a type
+                        <strong>Error =====> </strong> Search parameters invalid, enter either a type, category or name
                     </Alert>
                 </div>
             );
         }
 
-        //const wsQuery = 'ws://localhost:1337/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
-        const wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+        const wsQuery = 'ws://localhost:1337/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+        //const wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
 
         return (
             <div>

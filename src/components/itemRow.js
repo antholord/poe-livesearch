@@ -17,7 +17,7 @@ class ItemRow extends React.Component {
         this.findProp = this.findProp.bind(this);
 
         this.armour = this.findProp("Armour");
-        this.evasion = this.findProp("Evasion");
+        this.evasion = this.findProp("Evasion Rating");
         this.es = this.findProp("Energy Shield");
         this.block = this.findProp("Block");
         this.crit = this.findProp("Critical Strike Chance");
@@ -35,15 +35,22 @@ class ItemRow extends React.Component {
     }
     displayRequirements(){
         if (!this.props.item.Item.requirements){
-            return null;
+            return (
+                <div className="smallInfo flexBottom">
+                    <span>ilvl : {this.props.item.Item.ilvl}</span>
+                </div>
+            );
         }
         return (
-            <div className="smallInfo flexBottom"><span>ilvl : {this.props.item.Item.ilvl}</span>
-                {(this.props.item.Item.requirements[0] && this.props.item.Item.requirements[0].name === "Level") ? <span>Req : Lvl {this.props.item.Item.requirements[0].values[0][0]}</span> : null}
-                {(this.props.item.Item.requirements[1] && this.props.item.Item.requirements[1].name) ? <span>{this.props.item.Item.requirements[1].name}{' : '}{this.props.item.Item.requirements[1].values[0][0]}</span> : null}
-                {(this.props.item.Item.requirements[2] && this.props.item.Item.requirements[2].name) ? <span>{this.props.item.Item.requirements[2].name}{' : '}{this.props.item.Item.requirements[2].values[0][0]}</span> : null}
-                {(this.props.item.Item.requirements[3] && this.props.item.Item.requirements[3].name) ? <span>{this.props.item.Item.requirements[3].name}{' : '}{this.props.item.Item.requirements[3].values[0][0]}</span> : null}
-                <span>{(!this.props.item.Item.identified) ? 'Unidentified' : null}</span>
+            <div className="smallInfo flexBottom">
+
+                <span>ilvl : {this.props.item.Item.ilvl}</span>
+                    {(this.props.item.Item.requirements[0] && this.props.item.Item.requirements[0].name === "Level") ? <span>Req : Lvl {this.props.item.Item.requirements[0].values[0][0]}</span> : null}
+                    {(this.props.item.Item.requirements[1] && this.props.item.Item.requirements[1].name) ? <span>{this.props.item.Item.requirements[1].name}{' : '}{this.props.item.Item.requirements[1].values[0][0]}</span> : null}
+                    {(this.props.item.Item.requirements[2] && this.props.item.Item.requirements[2].name) ? <span>{this.props.item.Item.requirements[2].name}{' : '}{this.props.item.Item.requirements[2].values[0][0]}</span> : null}
+                    {(this.props.item.Item.requirements[3] && this.props.item.Item.requirements[3].name) ? <span>{this.props.item.Item.requirements[3].name}{' : '}{this.props.item.Item.requirements[3].values[0][0]}</span> : null}
+                    <span>{(!this.props.item.Item.identified) ? 'Unidentified' : null}</span>
+
             </div>
         );
     }
@@ -58,7 +65,7 @@ class ItemRow extends React.Component {
     }
     buildMessage() {
         const r = this.props.item;
-        let s= '@' + r.lastCharacterName + ' Hi, I would like to purchase your ' + r.Item.name + ' ' + r.Item.typeLine;
+        let s= '@' + r.lastCharacterName + ' Hi, I would like to purchase your ' + ((r.Item.stackSize>1) ? r.Item.stackSize : '') + r.Item.name + ' ' + r.Item.typeLine;
         if (r.Item.note.length>0){
             if (r.Item.note.substring(0,6) === "~price"){
                 s+= ' listed for ' + r.Item.note.substring(6,r.Item.note.length);
@@ -115,7 +122,10 @@ class ItemRow extends React.Component {
                                     {(r.Item.corrupted) ? 'Corrupted' : null}
                                     </span>
                             </div>
-                            {this.displayRequirements()}
+
+
+                                 {this.displayRequirements()}
+
                         </div>
                         <div className="media-middle">
                             <div className="">

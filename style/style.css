@@ -24,9 +24,15 @@ colored, .colored a {
     margin-bottom:40px;
 }
 .search {
-    margin:10px;
+
     vertical-align:bottom !important;
 }
+.selectW {
+    color:black;
+    font-size:18px;
+    margin-bottom:20px;
+}
+
 
 .top5 { margin-top:5px; }
 .top7 { margin-top:7px; }

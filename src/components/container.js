@@ -19,9 +19,17 @@ class Container extends React.Component {
     };
 
     onSubmit(form) {
-        if (!form || (!form.name && !form.type)){
+        if (!form || (!form.name && !form.type && !form.category && !form.subCategory)){
             this.setState({form : {error : 1}})
         }else{
+            if (form.name){
+                /*let nameArr = [];
+                form.name.map((name) => {
+                    nameArr.push(name.value);
+                });
+                form.name = nameArr;*/
+            }
+
             console.log(form);
             ctr++;
             this.setState({form});

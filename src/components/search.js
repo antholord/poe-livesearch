@@ -29,7 +29,7 @@ class Search extends React.Component {
                     <div className="row">
                         <div className="top15 search col-md-12">
                             <FormGroup controlId="category" className="col-md-4">
-                                <div className="selectW">
+                                <div className="selectW hidden">
                                     <VirtualizedSelect
                                         {...domOnlyProps(category)}
                                         options={topCategories.topCategories}
@@ -47,7 +47,7 @@ class Search extends React.Component {
                                 </div>
                             </FormGroup>
                             <FormGroup controlId="subCategory" className="col-md-4">
-                                <div className="selectW">
+                                <div className="selectW hidden">
                                     <VirtualizedSelect
                                         {...domOnlyProps(subCategory)}
                                         options={subCategories.subCategories}

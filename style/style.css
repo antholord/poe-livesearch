@@ -50,6 +50,9 @@ colored, .colored a {
     font-size:18px;
     margin-bottom:20px;
 }
+.hidden{
+    display: none;
+}
 
 
 .top5 { margin-top:5px; }

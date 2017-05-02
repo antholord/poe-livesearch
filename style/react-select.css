@@ -99,7 +99,7 @@
 .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
 .has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
 .has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
-  color: #007eff;
+  color: #DCD3C3;
   outline: none;
   text-decoration: underline;
 }
@@ -302,7 +302,7 @@
   border: 1px solid #c2e0ff;
   /* Fallback color for IE 8 */
   border: 1px solid rgba(0, 126, 255, 0.24);
-  color: #007eff;
+  color: #DCD3C3;
   display: inline-block;
   font-size: 18px;
   line-height: 1.4;

@@ -3,6 +3,7 @@ import Websocket from 'react-websocket';
 import queryString from "query-string";
 import {Alert} from "react-bootstrap";
 import ItemRow from "./itemRow";
+let Infinite = require('react-infinite');
 
 
 class LiveFeed extends React.Component {
@@ -70,7 +71,9 @@ class LiveFeed extends React.Component {
                 <div className="container main top30">
                     {(this.localRows.length === 0) ? <h2 className="text-center">Listening...</h2> : null}
                     <ul className="col-md-12 list-unstyled">
+                        <Infinite containerHeight={1080} elementHeight={220} useWindowAsScrollContainer>
                         {this.localRows}
+                        </Infinite>
                     </ul>
                 </div>
             </div>

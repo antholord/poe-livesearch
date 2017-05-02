@@ -16,9 +16,27 @@ body {
     -moz-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
 }
+.customNav{
+    background-color: #233237;
+
+    color:#DCD3C3;
+    border-style:solid;
+    border-color:#DCD3C3;
+    border-width:1px;
+
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+}
+.navbar-brand{
+    font-size:22px;
+}
 
 colored, .colored a {
     color : #DCD3C3;
+}
+.colored .navLink a:hover{
+    color : black;
 }
 .header {
     margin-bottom:40px;
@@ -50,12 +68,20 @@ colored, .colored a {
 /*.right5{margin-right:5.05px;}*/
 
 #leagueDropdown{
-    margin-top:10px;
-    margin-left:15px;
-    color:black;
-    height:42px;
+    border:none;
+    color:#DCD3C3;
+    background-color:inherit;
     width:200px;
     font-size: 140%;
+    height:50px;
+}
+.dropdown-menu{
+    left:15px;
+    color:#DCD3C3;
+    background-color:#18121E;
+}
+.dropdown-menu>li>a{
+    color:#DCD3C3;
 }
 #searchButton{
     background-color:#DCD3C3;

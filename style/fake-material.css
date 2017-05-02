@@ -17,6 +17,7 @@ input, textarea {
     border-bottom: 1px solid #757575;
     color:black;
     margin-right:10px;
+    background-color:#18121E;
 }
 textarea {
     position: relative;
@@ -148,7 +149,7 @@ input:not([required]) ~ label::after {
 input:not(:placeholder-shown):invalid,
 textarea:not(:placeholder-shown):invalid{
     /* Google material color red 500 */
-    border-bottom: 2px solid #F44336;
+
 }
 
 /* LABEL */
@@ -181,7 +182,7 @@ textarea:not(:placeholder-shown):invalid ~ .bar::before{
 input:not(:placeholder-shown):valid,
 textarea:not(:placeholder-shown):valid{
     /* Google material color green 500*/
-    border-bottom: 2px solid #DCD3C3;
+
 }
 
 /* LABEL */

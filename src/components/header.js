@@ -4,32 +4,23 @@
 import React from 'react';
 import {DropdownButton, MenuItem} from "react-bootstrap";
 
-
+/* <ul className="nav navbar-nav navbar-right">
+ <li className="navLink"><a href="#">Options</a></li>
+ <li className="navLink"><a href="#">About</a></li>
+ </ul>*/
 
 const Header = ({league, onLeagueChange}) => {
 
     return (
-        <div className="container-fluid main header">
-            <div className="col-lg-12 " id="topBanner">
-
-                <div className="row colored top-row">
-                    <div className="col-lg-4 text-left inline">
-                        <h1 className="inline title">
-                            <a href="/"><b>Path of Exile Live Search</b></a>
-                        </h1>
-                    </div>
-                    <h1>*ALPHA VERSION*</h1>
-                </div>
-                <div className="row bot10">
-                    <DropdownButton onSelect={onLeagueChange} title={league} id="leagueDropdown">
-                        <MenuItem eventKey="Legacy">Legacy</MenuItem>
-                        <MenuItem eventKey="Hardcore Legacy">Hardcore Legacy</MenuItem>
-                    </DropdownButton>
-                    <span className="f16">More search options to come later. Search is instantaneous because there's no indexing. You see items with as little delay as possible. If you put an item for sale and it doesn't show up instantly, it's the POE API being slow.</span>
-                    <br />
-                </div>
+        <nav className="navbar customNav colored">
+            <div className="container ">
+                <a className="navbar-brand" href="http://poesearch.live/">Path of Exile Live Search</a>
+                <DropdownButton onSelect={onLeagueChange} title={league} id="leagueDropdown" className="dropdown">
+                    <MenuItem eventKey="Legacy">Legacy</MenuItem>
+                    <MenuItem eventKey="Hardcore Legacy">Hardcore Legacy</MenuItem>
+                </DropdownButton>
             </div>
-        </div>
+        </nav>
     );
 };
 export default Header;

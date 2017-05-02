@@ -14,11 +14,15 @@ const Header = ({league, onLeagueChange}) => {
     return (
         <nav className="navbar customNav colored">
             <div className="container ">
-                <a className="navbar-brand" href="http://poesearch.live/">Path of Exile Live Search</a>
+                <a className="navbar-brand" href="/">Path of Exile Live Search</a>
                 <DropdownButton onSelect={onLeagueChange} title={league} id="leagueDropdown" className="dropdown">
                     <MenuItem eventKey="Legacy">Legacy</MenuItem>
                     <MenuItem eventKey="Hardcore Legacy">Hardcore Legacy</MenuItem>
                 </DropdownButton>
+                <ul className="nav navbar-nav navbar-right">
+
+                    <li className="navLink"><a href="/about">About</a></li>
+                </ul>
             </div>
         </nav>
     );

@@ -41,6 +41,7 @@
     "react-localstorage": "^0.3.1",
     "react-redux": "^5.0.4",
     "react-router": "^2.0.1",
+    "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.3",
     "react-tooltip": "^3.3.0",
     "react-virtualized-select": "^3.0.1",

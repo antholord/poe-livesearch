@@ -4,12 +4,24 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import Container from "./components/container";
+import About from "./components/about";
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
+
+
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
-        <Container />
+        <BrowserRouter>
+            <div>
+                <Switch>
+                    <Route path="/about" component={About}/>
+                    <Route path="/" component={Container}/>
+                </Switch>
+            </div>
+        </BrowserRouter>
+
     </Provider>
     , document.querySelector('.hook'));
 

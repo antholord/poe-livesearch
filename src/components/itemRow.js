@@ -91,17 +91,14 @@ class ItemRow extends React.Component {
         }else{
             return f.values[0][0];
         }
-
-
         return r;
     }
-
-
     render() {
         const r = this.props.item;
+        const cp = this.props.item.Item.customProperties;
          return (
             <li className="media container-fluid">
-                <div className="panel itemPanel panel-default ">
+                <div className="panel itemPanel panel-default">
                     <div className="panel-body">
                     <div className="media-left">
                         <Image key={this.props.index+'-img'} item={r} index={this.props.index+'-img'}/>
@@ -149,12 +146,12 @@ class ItemRow extends React.Component {
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{this.armour}</td>
-                                <td>{this.evasion}</td>
-                                <td>{this.es}</td>
-                                <td>{this.block}</td>
-                                <td>{this.crit}</td>
-                                <td>{this.quality}</td>
+                                <td>{cp.armour}</td>
+                                <td>{cp.evasion}</td>
+                                <td>{cp.es}</td>
+                                <td>{cp.block}</td>
+                                <td>{cp.crit}</td>
+                                <td>{cp.quality}</td>
                             </tr>
 
                             </tbody>
@@ -174,12 +171,12 @@ class ItemRow extends React.Component {
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{(this.pdps === 0) ? '' : this.pdps}</td>
-                                <td>{(this.edps === 0) ? '' : this.edps}</td>
-                                <td>{(this.dps === 0) ? '' : this.dps}</td>
-                                <td>{(this.aps === 0) ? '' : this.aps}</td>
-                                <td>{this.phys}</td>
-                                <td>{this.ele}</td>
+                                <td>{cp.pdps}</td>
+                                <td>{cp.edps}</td>
+                                <td>{cp.dps}</td>
+                                <td>{cp.aps}</td>
+                                <td>{cp.phys}</td>
+                                <td>{cp.ele}</td>
                             </tr>
 
                             </tbody>

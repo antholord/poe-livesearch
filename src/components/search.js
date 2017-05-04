@@ -11,14 +11,18 @@ import topCategories from '../data/topCategories.json'
 import subCategories from '../data/subCategories.json'
 import bases from '../data/bases.json'
 import {Creatable} from "react-select";
+import createFilterOptions from 'react-select-fast-filter-options';
 
 
 const domOnlyProps = ({initialValue, autofill, onUpdate, valid, invalid, dirty, pristine, active, touched, visited, autofilled, error, ...domProps}) => domProps;
+const itemsFilter = createFilterOptions({ options : dataItems.items });
+const basesFilter = createFilterOptions({ options : bases.bases});
 
 class Search extends React.Component {
     render() {
 
         const {fields: {name, category, subCategory, type, minSockets, maxSockets, minLinks, maxLinks, minIlvl, maxIlvl}, handleSubmit} = this.props;
+
         return (
 
             <Panel className="container main">
@@ -70,6 +74,7 @@ class Search extends React.Component {
                                 <div className="selectW">
                                     <VirtualizedSelect
                                         {...domOnlyProps(type)}
+                                        filterOptions={basesFilter}
                                         options={bases.bases}
                                         onChange={type.onChange}
                                         value={type.value}
@@ -92,12 +97,14 @@ class Search extends React.Component {
                         <div className="group selectW" style={{width: '100%'}}>
                             <VirtualizedSelect
                                 {...domOnlyProps(name)}
+                                filterOptions={itemsFilter}
                                 options={dataItems.items}
                                 onChange={name.onChange}
                                 value={name.value}
                                 name="name"
                                 placeholder="Name"
                                 onBlur={() => name.onBlur(name.value)}
+                                autoBlur={true}
                                 simpleValue={true}
                                 multi={true}
                                 clearable={false}

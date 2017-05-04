@@ -146,12 +146,12 @@ class ItemRow extends React.Component {
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{cp.armour}</td>
-                                <td>{cp.evasion}</td>
-                                <td>{cp.es}</td>
-                                <td>{cp.block}</td>
-                                <td>{cp.crit}</td>
-                                <td>{cp.quality}</td>
+                                <td>{this.armour}</td>
+                                <td>{this.evasion}</td>
+                                <td>{this.es}</td>
+                                <td>{this.block}</td>
+                                <td>{this.crit}</td>
+                                <td>{this.quality}</td>
                             </tr>
 
                             </tbody>
@@ -171,12 +171,12 @@ class ItemRow extends React.Component {
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{cp.pdps}</td>
-                                <td>{cp.edps}</td>
-                                <td>{cp.dps}</td>
-                                <td>{cp.aps}</td>
-                                <td>{cp.phys}</td>
-                                <td>{cp.ele}</td>
+                                <td>{(this.pdps === 0) ? '' : this.pdps}</td>
+                                <td>{(this.edps === 0) ? '' : this.edps}</td>
+                                <td>{(this.dps === 0) ? '' : this.dps}</td>
+                                <td>{(this.aps === 0) ? '' : this.aps}</td>
+                                <td>{this.phys}</td>
+                                <td>{this.ele}</td>
                             </tr>
 
                             </tbody>

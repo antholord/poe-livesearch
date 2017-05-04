@@ -10,6 +10,7 @@ import dataItems from '../data/itemsfmt.json';
 import topCategories from '../data/topCategories.json'
 import subCategories from '../data/subCategories.json'
 import bases from '../data/bases.json'
+import {Creatable} from "react-select";
 
 
 const domOnlyProps = ({initialValue, autofill, onUpdate, valid, invalid, dirty, pristine, active, touched, visited, autofilled, error, ...domProps}) => domProps;
@@ -103,6 +104,10 @@ class Search extends React.Component {
                                 onBlurResetsInput={false}
                                 onCloseResetsInput={false}
                                 delimiter="|"
+                                showNewOptionAtTop={false}
+                                selectComponent={Creatable}
+                                promptTextCreator={(label) => {return "Search for " + label}}
+
                             />
                         </div>
                     </FormGroup>
@@ -180,6 +185,7 @@ class Search extends React.Component {
 }
 
 function validate(values) {
+
     const errors = {};
     if (!values.name && !values.type && !values.subCategory && !values.category) {
         errors.name = 'Enter a type, category or name';

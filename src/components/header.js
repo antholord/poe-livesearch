@@ -23,6 +23,7 @@ const Header = ({league, onLeagueChange}) => {
                 <h4 className="navbar-text">Alpha version</h4>
                 <ul className="nav navbar-nav navbar-right">
                     <li className="navLink"><a href="/about">About</a></li>
+                    <li className="navLink"><a href="/updates">v1.1 Latest Changes</a></li>
                 </ul>
             </div>
         </nav>

@@ -115,6 +115,11 @@ colored, .colored a {
 tbody.itemBody{
 
 }
+
+.tableBody{
+    width:35% !important;
+
+}
 .itemPanel{
     width:100%;
     margin-top : 10px;

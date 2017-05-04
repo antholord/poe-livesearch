@@ -60,10 +60,12 @@ class LiveFeed extends React.Component {
                 </div>
             );
         }
-
-        //const wsQuery = 'ws://localhost:1337/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
-        const wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
-
+        let wsQuery;
+        if (window.location.host === 'localhost:8080'){
+            wsQuery = 'ws://localhost:1337/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+        }else{
+            wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
+        }
         return (
             <div key={JSON.stringify(this.props.form)}>
               <Websocket url={wsQuery}

@@ -133,8 +133,8 @@ class ItemRow extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="media-body">
-                        <table className="table table-condensed row">
+                    <div className="media-body tableBody">
+                        <table className="table table-condensed">
                             <thead>
                             <tr className="center text-center">
 
@@ -159,7 +159,7 @@ class ItemRow extends React.Component {
 
                             </tbody>
                         </table>
-                        <table className="table table-condensed row">
+                        <table className="table table-condensed">
                             <thead>
                             <tr className="center text-center">
 

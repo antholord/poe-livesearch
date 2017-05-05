@@ -15,7 +15,7 @@ class ItemRow extends React.Component {
         this.displayLinks = this.displayLinks.bind(this);
         this.buildMessage = this.buildMessage.bind(this);
         this.findProp = this.findProp.bind(this);
-
+        /*
         this.armour = this.findProp("Armour");
         this.evasion = this.findProp("Evasion Rating");
         this.es = this.findProp("Energy Shield");
@@ -31,7 +31,7 @@ class ItemRow extends React.Component {
         this.pdps = (this.phys) ? Math.round(this.phys * this.aps) : '';
         this.edps = (this.ele) ? Math.round(this.ele * this.aps) : '';
         this.dps = ((this.phys) ? this.pdps : 0) + ((this.ele) ? this.edps : 0) + ((this.chaos) ? this.cdps : 0);
-
+        */
     }
     displayRequirements(){
         if (!this.props.item.Item.requirements){
@@ -81,7 +81,8 @@ class ItemRow extends React.Component {
         let f = this.props.item.Item.properties.find(function(o) {return o.name === s;});
         if (!f) return null;
         let r=0;
-        if (s.includes("Damage")){
+        if (s.includes("Damage") && f.values[0][0] && f.values[0][0].includes("-")){
+
             for (let i = 0;i<f.values.length;i++){
                 let arr = f.values[i][0].split("-");
                 if (arr.length>0){
@@ -146,12 +147,12 @@ class ItemRow extends React.Component {
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{this.armour}</td>
-                                <td>{this.evasion}</td>
-                                <td>{this.es}</td>
-                                <td>{this.block}</td>
-                                <td>{this.crit}</td>
-                                <td>{this.quality}</td>
+                                <td>{(cp.armour === 0) ? '' : cp.armour}</td>
+                                <td>{(cp.evasion === 0) ? '' : cp.evasion}</td>
+                                <td>{(cp.es === 0) ? '' : cp.es}</td>
+                                <td>{(cp.block === 0) ? '' : cp.block}</td>
+                                <td>{(cp.crit === 0) ? '' : cp.crit}</td>
+                                <td>{(cp.quality === 0) ? '' : cp.quality}</td>
                             </tr>
 
                             </tbody>
@@ -171,12 +172,12 @@ class ItemRow extends React.Component {
                             </thead>
                             <tbody className="text-center">
                             <tr>
-                                <td>{(this.pdps === 0) ? '' : this.pdps}</td>
-                                <td>{(this.edps === 0) ? '' : this.edps}</td>
-                                <td>{(this.dps === 0) ? '' : this.dps}</td>
-                                <td>{(this.aps === 0) ? '' : this.aps}</td>
-                                <td>{this.phys}</td>
-                                <td>{this.ele}</td>
+                                <td>{(cp.pdps === 0) ? '' : Math.round(cp.pdps)}</td>
+                                <td>{(cp.edps === 0) ? '' : Math.round(cp.edps)}</td>
+                                <td>{(cp.dps === 0) ? '' : Math.round(cp.dps)}</td>
+                                <td>{(cp.aps === 0) ? '' : cp.aps.toFixed(2)}</td>
+                                <td>{(cp.phys === 0) ? '' : Math.round(cp.phys)}</td>
+                                <td>{(cp.ele === 0) ? '' : Math.round(cp.ele)}</td>
                             </tr>
 
                             </tbody>

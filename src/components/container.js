@@ -2,9 +2,12 @@
 import React from 'react';
 import LiveFeed from "./livefeed";
 import Header from "./header.js";
-import Search from "./search";
+import Search from "./search/search";
 
 let ctr = 0;
+
+
+
 class Container extends React.Component {
 
     constructor(props){
@@ -15,6 +18,7 @@ class Container extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onLeagueChange = this.onLeagueChange.bind(this);
         console.log(_league);
+
         ctr = 0;
     };
 

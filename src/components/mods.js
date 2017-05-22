@@ -12,16 +12,6 @@ function PrintMods(props) {
         );
     });
     return <div>{print}</div>;
-
-/*
-    if (props.mod && props.mod.length > 0){
-        {print}
-    }else{
-        return <div/>
-    }
-
-
-    return <span>WRONG</span>*/
 }
 
 const Mods = (props) => {

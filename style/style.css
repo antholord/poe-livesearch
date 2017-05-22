@@ -4,6 +4,9 @@ body {
     font-family: 'Roboto', sans-serif;
     border-radius:0px;
 }
+.text{
+    font-size:18px;
+}
 #main, .main {
 
     background-color: #233237;
@@ -15,6 +18,16 @@ body {
     border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
+}
+.removeModBtn{
+    background-color: #18121E;
+    height:45px;
+    width:40px;
+    margin-left:-40px;
+}
+.mainPanel {
+    background-color: #233237;
+    border-style:none !important;
 }
 .customNav{
     background-color: #233237;
@@ -48,7 +61,6 @@ colored, .colored a {
 .selectW {
     color:black;
     font-size:18px;
-    margin-bottom:20px;
 }
 .hidden{
     display: none;
@@ -62,6 +74,7 @@ colored, .colored a {
 .top17 { margin-top:17px; }
 .top20 { margin-top:20px; }
 .top30 { margin-top:30px; }
+.top40 { margin-top:40px; }
 .bot5 {margin-bottom:5px;}
 .bot10 {margin-bottom:10px;}
 .bot20 {margin-bottom:20px;}
@@ -86,11 +99,16 @@ colored, .colored a {
 .dropdown-menu>li>a{
     color:#DCD3C3;
 }
-#searchButton{
+#searchButton, #modButton{
     background-color:#DCD3C3;
 }
+
 .black {
     color:black;
+}
+.modGroup{
+    margin:0px !important;
+    padding:0px !important;
 }
 
 .alert {
@@ -157,6 +175,9 @@ h6 {
     padding-top:10px;
     margin-right:30px;
 }
+.padtop10{
+    padding-top:10px;
+}
 .flexBottom button{
     padding-top:9px;
 }
@@ -179,6 +200,12 @@ h6 {
     color:red;
     font-size:16px;
 }
+.inline{
+    display:inline;
+}
+.inline-block{
+    display:inline-block;
+}
 .minmax input{
     width:50px;
     margin-right:1px;
@@ -190,10 +217,15 @@ h6 {
     top:-40px;
     left:0px;
     font-size:17px;
+    white-space:nowrap;
+
 }
 
 FormGroup{
     margin-right:10px;
+}
+.modGroup.group{
+margin-bottom:15px;
 }
 .layout.vertical {
     -ms-flex-direction: column;

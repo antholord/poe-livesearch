@@ -9,7 +9,8 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "postinstall": "SET NODE_ENV=production & webpack -p",
-    "start": "node server.js"
+    "start": "node server.js",
+    "devnode": "webpack & node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "css-loader": "^0.28.0",
     "express": "^4.15.2",
     "json-loader": "^0.5.4",
+    "mongodb": "^2.2.26",
     "query-string": "^4.3.4",
     "react": "^15.5.4",
     "react-autocomplete": "latest",
@@ -44,11 +46,12 @@
     "react-router-dom": "^4.1.1",
     "react-select": "git+https://github.com/antholord/react-select.git",
     "react-select-fast-filter-options": "^0.2.1",
+    "react-toggle": "^3.0.1",
     "react-tooltip": "^3.3.0",
     "react-virtualized-select": "^3.0.1",
     "react-websocket": "^1.1.6",
     "redux": "^3.0.4",
-    "redux-form": "^4.1.3",
+    "redux-form": "^6.7.0",
     "url-parse": "^1.1.8",
     "webpack": "^1.15.0"
   }

@@ -36,6 +36,11 @@ class LiveFeed extends React.Component {
       }
         //FOR DEBUGGING ONLY
         if (result/* && this.localRows.length < 5*/){
+            if (this.props.form.MinBuyout || this.props.form.MaxBuyout){
+                if (this.props.form.MinBuyout){
+                    console.log(result);
+                }
+            }
             result.Item.links = this.countLinks(result);
             this.localRows.unshift(<ItemRow item={result} key={this.state.rows} index={this.state.rows}/>);
             if (this.localRows.length >200){

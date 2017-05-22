@@ -1,5 +1,11 @@
 let webpack = require("webpack");
 module.exports = {
+    watch: true,
+    watchOptions: {
+        aggregateTimeout:500,
+        poll:2000,
+        ignored:/nodemodules/,
+    },
   entry: [
     './src/index.js'
   ],

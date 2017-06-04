@@ -71,11 +71,15 @@ class LiveFeed extends React.Component {
         }else{
             wsQuery = 'wss://poe-livesearch-api.herokuapp.com/ws/livesearch?' + queryString.stringify(this.props.form) + '&' + queryString.stringify({league : this.props.league});
         }
+        let form = this.props.form;
+        form.league = this.props.league;
+        let wsSearchForm = JSON.stringify(form);
         return (
             <div key={JSON.stringify(this.props.form)}>
               <Websocket url={wsQuery}
-                         onMessage={this.handleData.bind(this)
-                        }/>
+                         onMessage={this.handleData.bind(this)}
+                         msgOnConnect={wsSearchForm}
+              />
                 <div className="container main top30">
                     {(this.localRows.length === 0) ? <h2 className="text-center">Listening...</h2> : null}
                     <ul className="col-md-12 list-unstyled">
@@ -84,6 +88,7 @@ class LiveFeed extends React.Component {
                         </Infinite>
                     </ul>
                 </div>
+                {queryString.stringify(this.props.form)}
             </div>
         );
     }
